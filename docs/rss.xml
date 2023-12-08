@@ -1,2 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Fri, 08 Dec 2023 02:37:17 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Fri, 08 Dec 2023 02:37:17 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>haha</title><link>https://yeshu.fun/yeshu.github.io/post/haha.html</link><description>haha。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/haha.html</guid><pubDate>Thu, 07 Dec 2023 10:22:20 +0000</pubDate></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Fri, 08 Dec 2023 02:48:07 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Fri, 08 Dec 2023 02:48:07 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>BoxFit.contain缩放效果实现</title><link>https://yeshu.fun/yeshu.github.io/post/BoxFit.contain-suo-fang-xiao-guo-shi-xian.html</link><description>实现svg图片显示时的BoxFit.contain效果&#13;
+```dart&#13;
+  Path getClip(Size size) {&#13;
+    var path = parseSvgPathData(svgPath);&#13;
+    // 计算宽度和高度的缩放因子&#13;
+    double widthScaleFactor = size.width / svgSize.width;&#13;
+    double heightScaleFactor = size.height / svgSize.height;&#13;
+&#13;
+    // 选择较小的缩放因子&#13;
+    double scaleFactor = min(widthScaleFactor, heightScaleFactor);&#13;
+&#13;
+    final Matrix4 matrix4 = Matrix4.identity();&#13;
+    matrix4.scale(scaleFactor, scaleFactor);&#13;
+&#13;
+    // 可选 - 计算居中的偏移量&#13;
+    double dx = (size.width - svgSize.width * scaleFactor) / 2;&#13;
+    double dy = (size.height - svgSize.height * scaleFactor) / 2;&#13;
+&#13;
+    return path.transform(matrix4.storage).shift(Offset(dx, dy));&#13;
+  }&#13;
+```。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/BoxFit.contain-suo-fang-xiao-guo-shi-xian.html</guid><pubDate>Fri, 08 Dec 2023 02:47:43 +0000</pubDate></item><item><title>haha</title><link>https://yeshu.fun/yeshu.github.io/post/haha.html</link><description>haha。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/haha.html</guid><pubDate>Thu, 07 Dec 2023 10:22:20 +0000</pubDate></item></channel></rss>
