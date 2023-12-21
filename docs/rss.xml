@@ -1,5 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Fri, 08 Dec 2023 03:31:47 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Fri, 08 Dec 2023 03:31:47 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>BoxFit.contain缩放效果实现</title><link>https://yeshu.fun/yeshu.github.io/post/BoxFit.contain-suo-fang-xiao-guo-shi-xian.html</link><description>实现svg图片显示时的BoxFit.contain效果&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Thu, 21 Dec 2023 04:12:51 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Thu, 21 Dec 2023 04:12:51 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>Material Design 3 Color System</title><link>https://yeshu.fun/yeshu.github.io/post/Material%20Design%203%20Color%20System.html</link><description>Flutter中如何使用Material Design 3的Color system&#13;
+&#13;
+概念&#13;
+* Color role： 颜色主题中定义的颜色名称，M3中有26+的color roles&#13;
+* Dynamic color： 从手机壁纸中获取的主题色（只有Android 12才支持）或者从图片内容中获取的主题色，注意主题色是指一个单一的颜色&#13;
+* Static color： 用户自己定义的颜色常量&#13;
+* Baseline color： 就是系统默认的颜色主题&#13;
+&#13;
+动态主题  &#13;
+1. 从壁纸或者图片内容中获取一个单一的颜色&#13;
+2. 通过算法根据生成的颜色再次获取5个颜色：Primary,Secondary,Tertiary,Neutral,Neutral variant&#13;
+3. 生成上面5个颜色对应的调色板（tonal palette）&#13;
+4. 然后选择调色板中不同色调的颜色生成完整的Light ColorScheme和Dark ColorScheme,这里面的原理是通过调色板中不同对比度来选择颜色配对color role, 可以有Standard, Medium, High三个档位的对比度&#13;
+&#13;
+官方链接&#13;
+https://m3.material.io/styles/color/system/overview&#13;
+![light](https://github.com/yeshu-cn/yeshu.github.io/assets/3785459/86f4ec22-7601-4750-8b44-0d067cb13730)&#13;
+&#13;
+demo:https://github.com/yeshu-cn/flutterdemo&#13;
+&#13;
+&#13;
+&#13;
+。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/Material%20Design%203%20Color%20System.html</guid><pubDate>Thu, 21 Dec 2023 04:12:29 +0000</pubDate></item><item><title>BoxFit.contain缩放效果实现</title><link>https://yeshu.fun/yeshu.github.io/post/BoxFit.contain-suo-fang-xiao-guo-shi-xian.html</link><description>实现svg图片显示时的BoxFit.contain效果&#13;
 ```dart&#13;
   Path getClip(Size size) {&#13;
     var path = parseSvgPathData(svgPath);&#13;
