@@ -12,7 +12,8 @@
         else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
     </script>
     
-<title>yeshu's blog</title>
+<title>Flutter中的Widget和State生命周期</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -23,113 +24,90 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.avatar {transition: 0.8s;width:64px;height:64px;}
-.avatar:hover{transform: scale(1.15) rotate(360deg);}
-#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
-.title-right button{margin-right:8px;padding:16px;}
-.title-right .circle{padding: 14px 16px;}
-
-.SideNav{min-width: 360px;}
-.SideNav-icon{margin-right: 16px}
-.SideNav-item .Label{color: #fff;margin-left:8px;}
-.d-flex{min-width:0;}
-.listTitle{overflow:hidden;white-space:nowrap;text-overflow: ellipsis;max-width: 100%;}
-.listLabels{white-space:nowrap;}
-
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .avatar {width:40px;height:40px;}
-    .blogTitle{display:none;}
-    #buttonRSS{display:none;}
-    .LabelTime{display:none;}
+    .postTitle{font-size:24px;}
 }
 </style>
 
 
+
+
 <body>
     <div id="header">
-<h1>
-    <img src="https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true" class="avatar circle" id="avatarImg"><a class="blogTitle">yeshu's blog</a></h1>
+<span class="postTitle">Flutter中的Widget和State生命周期</span>
 <div class="title-right">
-    <a href="/tag.html"><button id="buttonSearch" class="btn btn-invisible circle" title="搜索">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathSearch" fill-rule="evenodd"></path>
+
+    <a href="https://yeshu.fun/yeshu.github.io"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd" d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
         </svg>
     </button></a>
-    
-    <a href="/rss.xml" target="_blank"><button id="buttonRSS" class="btn btn-invisible circle" title="RSS">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathRSS" fill-rule="evenodd"></path>
+
+    <a href="https://github.com/yeshu-cn/yeshu.github.io/issues/6" target="_blank"><button class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
         </svg>
     </button></a>
-    <button class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
+
+<!--     <button class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
-    </button>
+    </button> -->
+
 </div>
 </div>
     <div id="content">
-<div style="margin-bottom: 16px;">听歌写代码.</div>
-<nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Flutter-zhong-de-Widget-he-State-sheng-ming-zhou-qi.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Flutter中的Widget和State生命周期</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#D117B5"><object><a style="color:#fff" href="/tag.html#flutter">flutter</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-01-11</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/shen-me-shi-yi-chang.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">什么是异常</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#f9d0c4"><object><a style="color:#fff" href="/tag.html#code">code</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-22</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Material%20Design%203%20Color%20System.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Material Design 3 Color System</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#D117B5"><object><a style="color:#fff" href="/tag.html#flutter">flutter</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-21</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/BoxFit.contain-suo-fang-xiao-guo-shi-xian.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">BoxFit.contain缩放效果实现</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#f9d0c4"><object><a style="color:#fff" href="/tag.html#code">code</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-08</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/haha.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">haha</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#216E90"><object><a style="color:#fff" href="/tag.html#life">life</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-07</span>
-    </div>
-</a>
-</nav>
+<div class="markdown-body" id="postBody">
+<h1>Flutter中的Widget和State生命周期</h1>
+<p>在Flutter中，理解Widget和State的生命周期是非常重要的。这篇文章将详细介绍这两者的生命周期，并通过一个实例来进行解释。</p>
+<h2>Widget和State的区别</h2>
+<p>首先，我们需要理解Widget和State的区别。在Flutter中，Widget是不可变的，一旦创建，就不能更改。每次你改变一个Widget的配置，Flutter框架就会创建一个新的Widget树。而State是可变的，当你创建一个StatefulWidget时，Flutter框架会同时创建一个State对象。这个State对象在Widget的生命周期内是持久的，即使Widget本身被重新构建，State对象也不会改变。</p>
+<h2>State的生命周期</h2>
+<p>State的生命周期包括创建、初始化、更新和销毁四个阶段。创建阶段是通过<code class="notranslate">createState</code>方法创建State对象，初始化阶段是在<code class="notranslate">initState</code>方法中进行一些初始化操作，更新阶段是当State对象的配置信息（即Widget）发生变化时，会调用<code class="notranslate">didUpdateWidget</code>方法，销毁阶段是当State对象不再需要时，会调用<code class="notranslate">dispose</code>方法。</p>
+<h2>Widget的销毁和State的保留</h2>
+<p>当Widget的配置改变时，Flutter框架会创建一个新的Widget，并且旧的Widget就会被销毁。但是，对应的State对象并不会被销毁，而是被保留下来，用于新的Widget。</p>
+<h2>示例</h2>
+<p>我们讨论了一个例子，即使用<code class="notranslate">AnimatedBuilder</code>。<code class="notranslate">AnimatedBuilder</code>会在每次动画值改变时重建，但是它的State对象会被保留下来。以下是相关的代码示例：</p>
+<div class="highlight highlight-source-dart"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-c1">MyAnimatedWidget</span> <span class="pl-k">extends</span> <span class="pl-c1">StatefulWidget</span> {
+  <span class="pl-k">final</span> <span class="pl-c1">Animation</span>&lt;<span class="pl-c1">double</span>&gt; animation;
+
+  <span class="pl-c1">MyAnimatedWidget</span>({<span class="pl-k">required</span> <span class="pl-c1">this</span>.animation});
+
+  <span class="pl-k">@override</span>
+  <span class="pl-c1">_MyAnimatedWidgetState</span> <span class="pl-en">createState</span>() <span class="pl-k">=&gt;</span> <span class="pl-c1">_MyAnimatedWidgetState</span>();
+}
+
+<span class="pl-k">class</span> <span class="pl-c1">_MyAnimatedWidgetState</span> <span class="pl-k">extends</span> <span class="pl-c1">State</span>&lt;<span class="pl-c1">MyAnimatedWidget</span>&gt; {
+  <span class="pl-k">@override</span>
+  <span class="pl-c1">Widget</span> <span class="pl-en">build</span>(<span class="pl-c1">BuildContext</span> context) {
+    <span class="pl-k">return</span> <span class="pl-c1">AnimatedBuilder</span>(
+      animation<span class="pl-k">:</span> widget.animation,
+      builder<span class="pl-k">:</span> (<span class="pl-c1">BuildContext</span> context, <span class="pl-c1">Widget</span><span class="pl-k">?</span> child) {
+        <span class="pl-c">// 这里的widget会在每次动画值改变时被重新构建</span>
+        <span class="pl-k">return</span> <span class="pl-c1">Container</span>(
+          height<span class="pl-k">:</span> widget.animation.value,
+          width<span class="pl-k">:</span> widget.animation.value,
+          color<span class="pl-k">:</span> <span class="pl-c1">Colors</span>.red,
+        );
+      },
+    );
+  }
+}</pre></div>
+<h2>背后的原理</h2>
+<p>在Flutter中，Widget和State的生命周期管理是通过Flutter框架的Element树来实现的。当我们调用<code class="notranslate">setState</code>方法时，Flutter框架会标记当前的Element为"dirty"（需要重建）。在下一次绘制帧时，Flutter会遍历所有标记为"dirty"的Element，调用它们的<code class="notranslate">build</code>方法来重新构建Widget。如果新的Widget和旧的Widget类型相同，那么Flutter框架会更新旧的Element以匹配新的Widget。这就是为什么State对象可以被保留下来，即使Widget被重新构建。如果新的Widget和旧的Widget类型不同，那么Flutter框架会销毁旧的Element和它的Widget，然后创建一个新的Element和Widget。这就是为什么Widget会被销毁。</p>
+<!-- </div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div> -->
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://yeshu.fun/yeshu.github.io"> yeshu's blog </a>
 <p>
@@ -182,19 +160,45 @@ console.log("\n %c Gmeek last %c https://github.com/Meekdai/Gmeek \n\n", "color:
 </script>
 
 <script>
-document.getElementById("pathSearch").setAttribute("d",IconList["search"]);
-document.getElementById("pathRSS").setAttribute("d",IconList["rss"]);
-iconTOP=document.getElementsByClassName("svgTop1");
-iconPost=document.getElementsByClassName("svgTop0");
-for(var i=0;i<iconTOP.length;i++){
-    iconTOP[i].setAttribute("d",IconList["upload"]);
-    iconTOP[i].parentNode.style.color="red";
-}
-for(var i=0;i<iconPost.length;i++){
-    iconPost[i].setAttribute("d",IconList["post"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","yeshu-cn/yeshu.github.io");
+    script.setAttribute("issue-term","title");
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else{script.setAttribute("theme","github-light");}
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
 }
 
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
 
 </script>
+
+
+
 
 </html>
