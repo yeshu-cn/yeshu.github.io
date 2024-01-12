@@ -1,5 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Thu, 11 Jan 2024 03:49:36 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Thu, 11 Jan 2024 03:49:36 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>Flutter中的Widget和State生命周期</title><link>https://yeshu.fun/yeshu.github.io/post/Flutter-zhong-de-Widget-he-State-sheng-ming-zhou-qi.html</link><description># Flutter中的Widget和State生命周期&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Fri, 12 Jan 2024 06:55:16 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Fri, 12 Jan 2024 06:55:16 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>Flutter中TextEditorController等占用了系统资源等代码，需要手动释放资源，不能依赖GC</title><link>https://yeshu.fun/yeshu.github.io/post/Flutter-zhong-TextEditorController-deng-zhan-yong-le-xi-tong-zi-yuan-deng-dai-ma-%EF%BC%8C-xu-yao-shou-dong-shi-fang-zi-yuan-%EF%BC%8C-bu-neng-yi-lai-GC.html</link><description>```dart&#13;
+class _FeedbackPageState extends State&lt;FeedbackPage&gt; {&#13;
+  final TextEditingController _contentController = TextEditingController();&#13;
+  final TextEditingController _contactController = TextEditingController();&#13;
+&#13;
+&#13;
+  @override&#13;
+  void dispose() {&#13;
+    _contentController.dispose();&#13;
+    _contactController.dispose();&#13;
+    super.dispose();&#13;
+  }&#13;
+}&#13;
+&#13;
+```&#13;
+在Dart（Flutter使用的语言）中，对象的生命周期是由垃圾收集器（GC）管理的。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/Flutter-zhong-TextEditorController-deng-zhan-yong-le-xi-tong-zi-yuan-deng-dai-ma-%EF%BC%8C-xu-yao-shou-dong-shi-fang-zi-yuan-%EF%BC%8C-bu-neng-yi-lai-GC.html</guid><pubDate>Fri, 12 Jan 2024 06:54:51 +0000</pubDate></item><item><title>Flutter中的Widget和State生命周期</title><link>https://yeshu.fun/yeshu.github.io/post/Flutter-zhong-de-Widget-he-State-sheng-ming-zhou-qi.html</link><description># Flutter中的Widget和State生命周期&#13;
 &#13;
 在Flutter中，理解Widget和State的生命周期是非常重要的。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/Flutter-zhong-de-Widget-he-State-sheng-ming-zhou-qi.html</guid><pubDate>Thu, 11 Jan 2024 03:49:10 +0000</pubDate></item><item><title>什么是异常</title><link>https://yeshu.fun/yeshu.github.io/post/shen-me-shi-yi-chang.html</link><description>异常是不可控且和我们职责无关的才是事情，例如网线被挖断了，硬盘坏了，地球炸了。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/shen-me-shi-yi-chang.html</guid><pubDate>Fri, 22 Dec 2023 09:16:58 +0000</pubDate></item><item><title>Material Design 3 Color System</title><link>https://yeshu.fun/yeshu.github.io/post/Material%20Design%203%20Color%20System.html</link><description>Flutter中如何使用Material Design 3的Color system&#13;
 &#13;
