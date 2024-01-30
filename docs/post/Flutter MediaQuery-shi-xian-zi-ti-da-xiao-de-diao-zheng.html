@@ -12,7 +12,8 @@
         else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
     </script>
     
-<title>yeshu's blog</title>
+<title>Flutter MediaQuery实现字体大小的调整</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -23,135 +24,102 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </style>
 
 <style>
-.avatar {transition: 0.8s;width:64px;height:64px;}
-.avatar:hover{transform: scale(1.15) rotate(360deg);}
-#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
 .title-right{display:flex;margin:auto 0 0 auto;}
-.title-right button{margin-right:8px;padding:16px;}
-.title-right .circle{padding: 14px 16px;}
-
-.SideNav{min-width: 360px;}
-.SideNav-icon{margin-right: 16px}
-.SideNav-item .Label{color: #fff;margin-left:8px;}
-.d-flex{min-width:0;}
-.listTitle{overflow:hidden;white-space:nowrap;text-overflow: ellipsis;max-width: 100%;}
-.listLabels{white-space:nowrap;}
-
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
 @media (max-width: 600px) {
     body {padding: 8px;}
-    .avatar {width:40px;height:40px;}
-    .blogTitle{display:none;}
-    #buttonRSS{display:none;}
-    .LabelTime{display:none;}
+    .postTitle{font-size:24px;}
 }
 </style>
 
 
+
+
 <body>
     <div id="header">
-<h1>
-    <img src="https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true" class="avatar circle" id="avatarImg"><a class="blogTitle">yeshu's blog</a></h1>
+<span class="postTitle">Flutter MediaQuery实现字体大小的调整</span>
 <div class="title-right">
-    <a href="/tag.html"><button id="buttonSearch" class="btn btn-invisible circle" title="搜索">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathSearch" fill-rule="evenodd"></path>
+
+    <a href="https://yeshu.fun/yeshu.github.io"><button id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd" d="M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z"></path>
         </svg>
     </button></a>
-    
-    <a href="/rss.xml" target="_blank"><button id="buttonRSS" class="btn btn-invisible circle" title="RSS">
-        <svg class="octicon" width="16" height="16" >
-            <path id="pathRSS" fill-rule="evenodd"></path>
+
+    <a href="https://github.com/yeshu-cn/yeshu.github.io/issues/8" target="_blank"><button class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
         </svg>
     </button></a>
-    <button class="btn btn-invisible circle" onclick="modeSwitch()" title="切换主题">
+
+<!--     <button class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
         <svg class="octicon" width="16" height="16" >
             <path id="themeSwitch" fill-rule="evenodd"></path>
         </svg>
-    </button>
+    </button> -->
+
 </div>
 </div>
     <div id="content">
-<div style="margin-bottom: 16px;">听歌写代码.</div>
-<nav class="SideNav border">
-<a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Flutter%20MediaQuery-shi-xian-zi-ti-da-xiao-de-diao-zheng.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Flutter MediaQuery实现字体大小的调整</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#D117B5"><object><a style="color:#fff" href="/tag.html#flutter">flutter</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-01-30</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Flutter-zhong-TextEditorController-deng-zhan-yong-le-xi-tong-zi-yuan-deng-dai-ma-%EF%BC%8C-xu-yao-shou-dong-shi-fang-zi-yuan-%EF%BC%8C-bu-neng-yi-lai-GC.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Flutter中TextEditorController等占用了系统资源等代码，需要手动释放资源，不能依赖GC</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#D117B5"><object><a style="color:#fff" href="/tag.html#flutter">flutter</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-01-12</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Flutter-zhong-de-Widget-he-State-sheng-ming-zhou-qi.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Flutter中的Widget和State生命周期</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#D117B5"><object><a style="color:#fff" href="/tag.html#flutter">flutter</a></object></span>
-        <span class="Label LabelTime" style="background-color:#bc4c00">2024-01-11</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/shen-me-shi-yi-chang.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">什么是异常</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#f9d0c4"><object><a style="color:#fff" href="/tag.html#code">code</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-22</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/Material%20Design%203%20Color%20System.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">Material Design 3 Color System</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#D117B5"><object><a style="color:#fff" href="/tag.html#flutter">flutter</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-21</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/BoxFit.contain-suo-fang-xiao-guo-shi-xian.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">BoxFit.contain缩放效果实现</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#f9d0c4"><object><a style="color:#fff" href="/tag.html#code">code</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-08</span>
-    </div>
-</a><a class="SideNav-item d-flex flex-items-center flex-justify-between" href="post/haha.html">
-    <div class="d-flex flex-items-center">
-        <svg class="SideNav-icon octicon" style="witdh:16px;height:16px"><path class="svgTop0" d=""></path>
-        </svg>
-        <span class="listTitle">haha</span>
-    </div>
-    <div class="listLabels">
-        
-        <span class="Label LabelName" style="background-color:#216E90"><object><a style="color:#fff" href="/tag.html#life">life</a></object></span>
-        <span class="Label LabelTime" style="background-color:#A333D0">2023-12-07</span>
-    </div>
-</a>
-</nav>
+<div class="markdown-body" id="postBody">
+<div class="highlight highlight-source-dart"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">main</span>() <span class="pl-k">=&gt;</span> <span class="pl-en">runApp</span>(<span class="pl-c1">MyApp</span>());
+
+<span class="pl-k">class</span> <span class="pl-c1">MyApp</span> <span class="pl-k">extends</span> <span class="pl-c1">StatelessWidget</span> {
+  <span class="pl-k">@override</span>
+  <span class="pl-c1">Widget</span> <span class="pl-en">build</span>(<span class="pl-c1">BuildContext</span> context) {
+    <span class="pl-k">return</span> <span class="pl-c1">MaterialApp</span>(
+      title<span class="pl-k">:</span> <span class="pl-s">'Flutter Demo'</span>,
+      theme<span class="pl-k">:</span> <span class="pl-c1">ThemeData</span>(
+        primarySwatch<span class="pl-k">:</span> <span class="pl-c1">Colors</span>.blue,
+      ),
+      builder<span class="pl-k">:</span> (context, child) {
+        <span class="pl-k">return</span> <span class="pl-c1">MediaQuery</span>(
+          data<span class="pl-k">:</span> <span class="pl-c1">MediaQuery</span>.<span class="pl-en">of</span>(context).<span class="pl-en">copyWith</span>(textScaler<span class="pl-k">:</span> <span class="pl-c1">TextScaler</span>.<span class="pl-en">linear</span>(<span class="pl-c1">1.5</span>)),
+          child<span class="pl-k">:</span> child,
+        );
+      },
+      home<span class="pl-k">:</span> <span class="pl-c1">MyHomePage</span>(),
+    );
+  }
+}
+</pre></div>
+<p><code class="notranslate">MediaQuery</code> 在 Flutter 中扮演着非常关键的角色，它提供了关于当前媒体（例如屏幕或窗口）的信息，这些信息对于构建响应式 UI 非常重要。以下是 <code class="notranslate">MediaQuery</code> 的主要职责和作用：</p>
+<ol>
+<li>
+<p><strong>提供设备屏幕尺寸信息</strong>：<code class="notranslate">MediaQuery</code> 可以提供设备屏幕的宽度和高度，这对于构建在不同屏幕尺寸上良好工作的布局非常重要。</p>
+</li>
+<li>
+<p><strong>设备方向和屏幕比例</strong>：它还提供设备的方向（横屏或竖屏）和纵横比，这有助于创建能够在不同方向和比例下适应的布局。</p>
+</li>
+<li>
+<p><strong>像素密度</strong>：<code class="notranslate">MediaQuery</code> 提供设备的像素比（例如，每个逻辑像素有多少物理像素），这对于处理图像分辨率和确保 UI 元素在不同密度的屏幕上保持一致的大小非常重要。</p>
+</li>
+<li>
+<p><strong>边距和填充</strong>：它还提供了如安全区域（例如，刘海屏或屏幕底部的导航栏的区域）的边距信息，这有助于避免 UI 元素被这些区域遮挡。</p>
+</li>
+<li>
+<p><strong>文本缩放因子</strong>：<code class="notranslate">MediaQuery</code> 的 <code class="notranslate">textScaleFactor</code> 属性可以用来获取用户在系统设置中选择的文本大小。这有助于创建适应不同用户偏好的文字大小的应用。</p>
+</li>
+</ol>
+<p>为什么可以通过 <code class="notranslate">MediaQuery</code> 调整显示大小：</p>
+<ul>
+<li>
+<p>当您通过 <code class="notranslate">MediaQuery</code> 设置 <code class="notranslate">textScaleFactor</code> 时，您实际上是在告诉 Flutter 应用如何根据用户的设备设置和偏好来缩放文本。这意味着，如果用户选择了更大的字体大小（例如在设备的辅助功能设置中），<code class="notranslate">textScaleFactor</code> 将相应地增加，使得应用中的文本也会变大。</p>
+</li>
+<li>
+<p>由于 <code class="notranslate">MediaQuery</code> 是上下文相关的，这意味着它可以提供有关应用当前运行的设备的特定信息。因此，使用 <code class="notranslate">MediaQuery</code> 可以确保应用的 UI 能够适应不同的设备和用户偏好，从而提供更好的用户体验。</p>
+</li>
+</ul>
+<p>通过在应用的顶层设置 <code class="notranslate">MediaQuery</code>（通常在 <code class="notranslate">MaterialApp</code> 或 <code class="notranslate">CupertinoApp</code> 的 <code class="notranslate">builder</code> 属性中），您可以确保整个应用遵循相同的文本缩放规则，从而简化了响应式设计的实现。</p>
+<!-- </div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div> -->
 </div>
     <div id="footer">Copyright © <span id="year"></span><a href="https://yeshu.fun/yeshu.github.io"> yeshu's blog </a>
 <p>
@@ -204,19 +172,45 @@ console.log("\n %c Gmeek last %c https://github.com/Meekdai/Gmeek \n\n", "color:
 </script>
 
 <script>
-document.getElementById("pathSearch").setAttribute("d",IconList["search"]);
-document.getElementById("pathRSS").setAttribute("d",IconList["rss"]);
-iconTOP=document.getElementsByClassName("svgTop1");
-iconPost=document.getElementsByClassName("svgTop0");
-for(var i=0;i<iconTOP.length;i++){
-    iconTOP[i].setAttribute("d",IconList["upload"]);
-    iconTOP[i].parentNode.style.color="red";
-}
-for(var i=0;i<iconPost.length;i++){
-    iconPost[i].setAttribute("d",IconList["post"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","yeshu-cn/yeshu.github.io");
+    script.setAttribute("issue-term","title");
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else{script.setAttribute("theme","github-light");}
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
 }
 
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
 
 </script>
+
+
+
 
 </html>
