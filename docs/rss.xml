@@ -1,5 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Thu, 21 Mar 2024 09:15:07 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Thu, 21 Mar 2024 09:15:07 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>系统代理和应用程序代理之间的关系</title><link>https://yeshu.fun/yeshu.github.io/post/xi-tong-dai-li-he-ying-yong-cheng-xu-dai-li-zhi-jian-de-guan-xi.html</link><description>## 什么是系统代理&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>yeshu's blog</title><link>https://yeshu.fun/yeshu.github.io</link><description>听歌写代码.</description><copyright>yeshu's blog</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.com/yeshu-cn/yeshu.github.io/blob/main/icon.png?raw=true</url><title>avatar</title><link>https://yeshu.fun/yeshu.github.io</link></image><lastBuildDate>Thu, 21 Mar 2024 09:23:14 +0000</lastBuildDate><managingEditor>yeshu's blog</managingEditor><pubDate>Thu, 21 Mar 2024 09:23:14 +0000</pubDate><ttl>60</ttl><webMaster>yeshu's blog</webMaster><item><title>Android VPN Service中的流量转发设置</title><link>https://yeshu.fun/yeshu.github.io/post/Android%20VPN%20Service-zhong-de-liu-liang-zhuan-fa-she-zhi.html</link><description>## 建立VPN链接代码&#13;
+```&#13;
+        val builder = Builder()&#13;
+        builder.addAddress("10.1.10.2", 32)&#13;
+        //builder.addRoute("0.0.0.0", 0)&#13;
+        builder.setSession("MyVpnSession")&#13;
+        // builder.setHttpProxy(ProxyInfo.buildDirectProxy(proxyHost, proxyPort))&#13;
+&#13;
+        val vpnInterface = builder.establish()&#13;
+```&#13;
+&#13;
+1. `builder.setHttpProxy(ProxyInfo.buildDirectProxy(proxyHost, proxyPort))`: 设置系统代理，如果流量被转发到VPN中，则不会被转发到代理服务器中*&#13;
+2.  `builder.addRoute("0.0.0.0", 0)`：根据路由匹配到的数据包都将转发到VPN中，优先级高于Http代理的设置&#13;
+3.  `builder.addAllowedApplication`，`builder.addDisallowedApplication`：这两个方法互斥，优先级高于路由addRoute的设置&#13;
+&#13;
+## `builder.addAllowedApplication`和`builder.addDisallowedApplication`使用&#13;
+`builder.addAllowedApplication`方法用于指定哪些应用程序的流量可以通过VPN。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/Android%20VPN%20Service-zhong-de-liu-liang-zhuan-fa-she-zhi.html</guid><pubDate>Thu, 21 Mar 2024 09:22:52 +0000</pubDate></item><item><title>系统代理和应用程序代理之间的关系</title><link>https://yeshu.fun/yeshu.github.io/post/xi-tong-dai-li-he-ying-yong-cheng-xu-dai-li-zhi-jian-de-guan-xi.html</link><description>## 什么是系统代理&#13;
 系统代理是在操作系统级别设置的代理，它会影响到设备上所有的网络流量。</description><guid isPermaLink="true">https://yeshu.fun/yeshu.github.io/post/xi-tong-dai-li-he-ying-yong-cheng-xu-dai-li-zhi-jian-de-guan-xi.html</guid><pubDate>Thu, 21 Mar 2024 09:14:37 +0000</pubDate></item><item><title>什么是NAT</title><link>https://yeshu.fun/yeshu.github.io/post/shen-me-shi-NAT.html</link><description># 网络地址转换(NAT)&#13;
 &#13;
 ## 什么是NAT?&#13;
