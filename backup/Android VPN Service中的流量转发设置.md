@@ -23,3 +23,6 @@
 所以，`builder.addAllowedApplication`的优先级是高于`builder.addRoute`的。如果你同时设置了这两个方法，那么`builder.addAllowedApplication`的设置会覆盖`builder.addRoute`的设置。
 
 需要注意的是，`builder.addAllowedApplication`和`builder.addDisallowedApplication`这两个方法是互斥的，你只能选择其中一个来使用。如果你同时调用了这两个方法，那么最后调用的那个方法的设置会覆盖前面的设置。
+
+## `allowBypass`应用程序绕过VPN的流量转发
+`allowBypass`方法是在构建VPN连接时使用的。当调用此方法时，应用程序可以使用`ConnectivityManager.bindProcessToNetwork`等方法绕过VPN连接直接发送/接收数据。默认情况下，所有应用程序的流量都会通过VPN接口转发，应用程序无法绕过VPN。如果调用了此方法，应用程序可以选择绕过VPN，直接使用底层网络或者它们有权限的任何其他网络进行数据传输。
